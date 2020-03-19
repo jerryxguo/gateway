@@ -24,6 +24,7 @@ if it is unavailiable, run "sudo apt-get install redis-server" (Ubuntu) to set u
 Run the commands in sequence:  
 
 go get -d
+
 go build
 
 ## Tests
