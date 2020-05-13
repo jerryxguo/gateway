@@ -32,7 +32,7 @@ No unit test provided
 
 ## Command line for testing
 
-instlal the tool 'curl' locally and run the commands as below
+install the tool 'curl' locally and run the commands as below
 
 1) command to get a list of unique medallion:  
 
