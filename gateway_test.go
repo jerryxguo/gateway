@@ -3,12 +3,9 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"net/http"
 	"net/http/httptest"
-	"strconv"
-	"strings"
 	"testing"
 	"time"
 
@@ -68,24 +65,10 @@ func TestNormalQuery(t *testing.T) {
 
 	services.GetTripsFunc = func(db *sqlx.DB, medallion string, date string) ([]services.Trip, error) {
 		trips := []services.Trip{}
-		//"2014-11-12"
-		parts := strings.Split(date, "-")
-		if len(parts) == 3 {
-			year, erry := strconv.Atoi(parts[0])
-			month, errm := strconv.Atoi(parts[1])
-			day, errd := strconv.Atoi(parts[2])
-			if erry == nil && errm == nil && errd == nil {
-				searchDate := time.Date(year, (time.Month)(month), day, 0, 0, 0, 0, time.UTC)
-				for _, trip := range tripList {
-					if medallion == trip.Medallion && searchDate.Equal(trip.PickupDatetime) {
-						trips = append(trips, trip)
-					}
-				}
-			} else {
-				return trips, errors.New("wrong date which needs to be in format of '2014-11-01'")
+		for _, trip := range tripList {
+			if medallion == trip.Medallion {
+				trips = append(trips, trip)
 			}
-		} else {
-			return trips, errors.New("wrong date which needs to be in format of '2014-11-01'")
 		}
 		return trips, nil
 	}
