@@ -13,21 +13,15 @@ gateway is a restful API example server in golang. it shows how to pull data fro
 
 By default it is running like: gateway -dbDriver=sqlite3 -dbSource=cab.db -hostAddress=0.0.0.0:3000
 
-## Prerequisite 
-
-It requres redis server running locally
-
-if it is unavailiable, run "sudo apt-get install redis-server" (Ubuntu) to set up redis server
-
 ## Build Instructions (Linux only)
 
 Run the commands in sequence:  
 
 go get -d
-
 go build
 
 ## Tests
+
 go test
 go test ./services
 
