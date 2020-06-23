@@ -1,5 +1,5 @@
 ## Description
-gateway is a restful API example server in golang. it shows how to pull data from database and cache it in the redis for the performance achivement
+gateway is a restful API example server in golang. it shows how to pull data from database and cache it in the redis for the better performance 
 
     Usage: gateway [options]
            
@@ -28,7 +28,8 @@ go get -d
 go build
 
 ## Tests
-No unit test provided
+go test
+go test ./services
 
 ## Command line for testing
 
@@ -38,16 +39,14 @@ install the tool 'curl' locally and run the commands as below
 
 curl -i -GET "localhost:3000/api/medallion"
 
-2) command to get the trip details for a particular medallion given a particular pickup date:
+2) command to get the trip details for some medallions given a particular pickup date:
 
-curl -i -GET "localhost:3000/api/search?medallion=61F44C93E6A0144B432041EE033F10C5&date=2013-12-31&date=2013-12-01"
+curl -i -POST "localhost:3000/api/trips" "{'medallions':[], 'date':''}"
 
 3) command to ignore cache to get fresh result:
 
-curl -i -GET "localhost:3000/api/medallion?ignore"
-
-curl -i -GET "localhost:3000/api/search?medallion=61F44C93E6A0144B432041EE033F10C5&date=2013-12-31&date=2013-12-01&ignore"
+curl -i -POST "localhost:3000/api/trips" "{'medallions':[], 'date':'','fresh':true}"
 
 4) command to clear the cache
 
-curl -i -PUT "localhost:3000/api/clear"
+curl -i -DELETE "localhost:3000/api/cache"
