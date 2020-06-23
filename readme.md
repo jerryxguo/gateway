@@ -18,11 +18,13 @@ By default it is running like: gateway -dbDriver=sqlite3 -dbSource=cab.db -hostA
 Run the commands in sequence:  
 
 go get -d
+
 go build
 
 ## Tests
 
 go test
+
 go test ./services
 
 ## Command line for testing
