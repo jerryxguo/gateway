@@ -33,16 +33,17 @@ install the tool 'curl' locally and run the commands as below
 
 1) command to get a list of unique medallion:  
 
-curl -i -GET "localhost:3000/api/medallion"
+curl -i -X GET "localhost:3000/api/medallion"
 
 2) command to get the trip details for some medallions given a particular pickup date:
 
-curl -i -POST "localhost:3000/api/trips" "{'medallions':[], 'date':''}"
+curl -i -X POST "localhost:3000/api/trips" -d "{\"medallions\":[\"11B683D81211E96F472173C69D4632D6\",\"9A80FE5419FEA4F44DB8E67F29D84A0F\"], \"date\":\"2013-12-31\"}"
 
 3) command to ignore cache to get fresh result:
 
-curl -i -POST "localhost:3000/api/trips" "{'medallions':[], 'date':'','fresh':true}"
+curl -i -X POST "localhost:3000/api/trips" -d "{\"medallions\":[\"11B683D81211E96F472173C69D4632D6\",\"9A80FE5419FEA4F44DB8E67F29D84A0F\"], \"date\":\"2013-12-31\",\"fresh\":true}"
+
 
 4) command to clear the cache
 
-curl -i -DELETE "localhost:3000/api/cache"
+curl -i -X DELETE "localhost:3000/api/cache"
