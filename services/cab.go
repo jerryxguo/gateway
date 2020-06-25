@@ -36,15 +36,6 @@ const (
 	FROM cab_trip_data WHERE (medallion = $1 AND pickup_datetime >= $2 AND pickup_datetime < $3)`
 )
 
-var InitCabDbFunc = sqlx.Connect
-
-var GetMedallionsFunc = func(db *sqlx.DB) ([]Identity, error) {
-
-	medallions := []Identity{}
-	err := db.Select(&medallions, queryMedallions)
-	return medallions, err
-}
-
 var GetTripsFunc = func(db *sqlx.DB, medallion string, date string) ([]Trip, error) {
 
 	trips := []Trip{}
@@ -74,12 +65,14 @@ var GetTripsFunc = func(db *sqlx.DB, medallion string, date string) ([]Trip, err
 //InitCabDb to initialize Cab DB connection
 func InitCabDb(dbDriver, dbSource string) (*sqlx.DB, error) {
 	// Start and run the server
-	return InitCabDbFunc(dbDriver, dbSource)
+	return sqlx.Connect(dbDriver, dbSource)
 }
 
 //GetMedallions to get medallion list
 func GetMedallions(db *sqlx.DB) ([]Identity, error) {
-	return GetMedallionsFunc(db)
+	medallions := []Identity{}
+	err := db.Select(&medallions, queryMedallions)
+	return medallions, err
 }
 
 //GetTrips to get a list of trip details for a list of medallions in a particular day

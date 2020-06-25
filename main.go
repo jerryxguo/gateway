@@ -22,7 +22,7 @@ var (
 
 func init() {
 	flag.StringVar(&dbDriver, "dbDriver", "sqlite3", "the database driver name")
-	flag.StringVar(&dbSource, "dbSource", "cab.db", "the database data source name")
+	flag.StringVar(&dbSource, "dbSource", "./services/cab.db", "the database data source name")
 	flag.StringVar(&hostAddress, "hostAddress", "0.0.0.0:3000", "the host address")
 }
 
