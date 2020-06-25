@@ -11,7 +11,7 @@ gateway is a restful API example server in golang. it shows how to pull data fro
       -hostAddress
             the server address
 
-By default it is running like: gateway -dbDriver=sqlite3 -dbSource=cab.db -hostAddress=0.0.0.0:3000
+By default it is running like: gateway -dbDriver=sqlite3 -dbSource=./services/cab.db -hostAddress=0.0.0.0:3000
 
 ## Build Instructions (Linux only)
 

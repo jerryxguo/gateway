@@ -43,9 +43,7 @@ var tripList = []services.Trip{
 }
 
 func setup() (*gin.Engine, error) {
-
-	services.InitCabDbFunc = func(dbDriver, dbSource string) (*sqlx.DB, error) { return nil, nil }
-	router, err := setupGateway("", "", "0.0.0.0:3000")
+	router, err := setupGateway("sqlite3", "./services/cab.db", "0.0.0.0:3000")
 	return router, err
 }
 
@@ -62,7 +60,7 @@ func TestWrongDate(t *testing.T) {
 }
 
 func TestNormalQuery(t *testing.T) {
-
+	//stub GetTripsFun
 	services.GetTripsFunc = func(db *sqlx.DB, medallion string, date string) ([]services.Trip, error) {
 		trips := []services.Trip{}
 		for _, trip := range tripList {
@@ -97,6 +95,7 @@ func TestNormalQuery(t *testing.T) {
 	}
 
 	//test cache policy works
+	//stub GetTripsFun
 	services.GetTripsFunc = func(db *sqlx.DB, medallion string, date string) ([]services.Trip, error) {
 		return []services.Trip{}, nil
 	}
