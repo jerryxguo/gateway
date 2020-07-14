@@ -1,5 +1,5 @@
 ## Description
-gateway is a restful API example server in golang. it shows how to pull data from database and cache it in the redis for the better performance 
+gateway is a restful API example server in golang. it shows how to pull data from database and cache it for the better performance 
 
     Usage: gateway [options]
            
